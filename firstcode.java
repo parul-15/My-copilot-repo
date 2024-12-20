@@ -1,4 +1,6 @@
-public class Employee {
+import java.util.Arrays;
+
+public class Employee implements Comparable<Employee> {
     private String name;
     private int id;
     private String department;
@@ -51,5 +53,34 @@ public class Employee {
         System.out.println("Name: " + name);
         System.out.println("Department: " + department);
         System.out.println("Salary: " + salary);
+    }
+
+    // Implementing compareTo method for sorting by salary using custom logic
+    @Override
+    public int compareTo(Employee other) {
+        if (this.salary > other.salary) {
+            return 1;
+        } else if (this.salary < other.salary) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        Employee emp1 = new Employee("Alice", 1, "HR", 60000);
+        Employee emp2 = new Employee("Bob", 2, "IT", 75000);
+        Employee emp3 = new Employee("Charlie", 3, "Finance", 50000);
+        Employee emp4 = new Employee("David", 4, "Marketing", 65000);
+
+        Employee[] employees = {emp1, emp2, emp3, emp4};
+
+        // Sort employees by salary
+        Arrays.sort(employees);
+
+        // Display sorted employee details
+        for (Employee emp : employees) {
+            emp.displayEmployeeDetails();
+        }
     }
 }
